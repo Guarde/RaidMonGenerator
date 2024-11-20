@@ -36,7 +36,7 @@
         "aspects_lookup": {"mega": "in-battle-mega", "mega-x": "in-battle-megax", "mega-y": "in-battle-megay"}, //Lookup table for discrepancies
         "non_visual_aspects": ["in-battle-megax", "in-battle-megay", "in-battle-mega", "origin"], //Aspects that change more than just the look of the pokemon
         "aspect_subfolders": ["thief", "crystal", "tree-cherry", "midnight", "party", "coldiron", "original", "kitsune", "costume", "abyss", "starwars", "shadow", "toxicchain", "nimbus", "pride", "gilded", "easter", "ancientruins", "champion", "undertale", "prismatic", "fourthofjuly", "sonic", "sakura", "unite", "pinkan", "pink", "valencian", "stpatricks", "halloween", "arclight", "sunburst", "slayer", "gym", "newyears", "zelda", "mario", "aprilfools", "christmas", "valentine", "in-battle-mega"], //Pokemon with the following aspects will be placed in the respective subfolder. First match takes priority
-        "subfolder_merger": {"legendary": ["legendary", "mythical"], "mega": ["in-battle-mega"], "halloween": ["halloween", "costume"], "gym": ["thief", "tree-cherry", "midnight", "party", "coldiron", "original"], "challenger": ["gym", "crystal"], "pinkan": ["pinkan", "pink"]}
+        "subfolder_merger": {"legendary": ["legendary", "mythical"], "mega": ["in-battle-mega"], "halloween": ["halloween", "costume"], "gym": ["thief", "tree-cherry", "midnight", "party", "coldiron", "original"], "challenger": ["gym", "crystal"], "pinkan": ["pinkan", "pink"]} //Forms that match the values will be merged into a single subfolder (can also be used to rename folders)
     },
     "rewards":{
         "base":[
