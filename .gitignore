@@ -174,5 +174,5 @@ pyrightconfig.json
 
 # Custom stuff
 resolvers
-output/output.json
+output
 scripts/generate_pokemon_data.py

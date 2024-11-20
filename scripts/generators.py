@@ -294,7 +294,13 @@ def filter_aspects():
         filtered_aspects[pokemon].append(a)
     for pokemon, aspects in file_man.cobbledata.items():
         for aspect in aspects:
-            if aspect == [] and not "" in file_man.settings["aspects"]["aspects_whitelist"]:
+            passed = True
+            for blacklist in file_man.settings["aspects"]["aspects_blacklist"]:
+                if [a for a in aspect if blacklist in a] == []:
+                    continue
+                passed = False
+                break
+            if not passed:
                 continue
             if aspect == [] and "" in file_man.settings["aspects"]["aspects_whitelist"]:
                 add_aspect(pokemon, aspect)
@@ -302,9 +308,7 @@ def filter_aspects():
             if file_man.settings["aspects"]["aspects_whitelist"] == []:
                 add_aspect(pokemon, aspect)
                 continue
-            if file_man.settings["aspects"]["is_blacklist"] and not [a for a in aspect if a in file_man.settings["aspects"]["aspects_whitelist"]] == []:
-                continue
-            if not file_man.settings["aspects"]["is_blacklist"] and not [a for a in aspect if a in file_man.settings["aspects"]["aspects_whitelist"]] == aspect:
+            if [a for a in aspect if a in file_man.settings["aspects"]["aspects_whitelist"]] == []:
                 continue
             add_aspect(pokemon, aspect)
     return filtered_aspects
@@ -331,11 +335,32 @@ def filter_pokemon_with_aspects(aspect_list, pokemon):
     return new_pokemon_list
 
 def run_process(pokemon_list, home):
-    output = {}
+    file_man.cleanup_output_folder(home)
     for n, p in pokemon_list.items():
         o = build_set(p)
+
         if o["ability"] == "":
             print(n + " has no ability.")
             continue
-        output[n] = o
-    file_man.do_dump(output, home)
+
+        folder = "regular"
+        if p["legendary"]:
+            folder = "legendary"
+        if p["mythical"]:
+            folder = "mythical"
+        if p["ultrabeast"]:
+            folder = "ultrabeast"
+
+        for a in file_man.settings["aspects"]["aspect_subfolders"]:
+            if not a in o["form"]:
+                continue
+            folder = a
+            break
+
+        for key, values in file_man.settings["aspects"]["subfolder_merger"].items():
+            if not folder in values:
+                continue
+            folder = key
+            break
+
+        file_man.do_dump(o, home, folder, n)

@@ -1,4 +1,4 @@
-import os
+import os, shutil
 import jstyleson as json
 
 pokemon_data = {}
@@ -33,6 +33,18 @@ def load_files(home):
         cobbledata = json.load(f)
     print("Resource pack data loaded...")
 
-def do_dump(output, home):
-    with open(os.path.join(home, "output", "output.json"), mode="w+") as f:
+def cleanup_output_folder(home):
+    output_path = os.path.join(home, "output")
+    shutil.rmtree(output_path)
+    os.mkdir(output_path)
+
+
+def do_dump(output, home, folder, filename):
+    filename = f"{filename}.json"
+    folder_path = os.path.join(home, "output", folder)
+    if not os.path.exists(os.path.join(home, "output")):
+        os.mkdir(os.path.join(home, "output"))
+    if not os.path.exists(folder_path):
+        os.mkdir(folder_path)
+    with open(os.path.join(folder_path, filename), mode="w+") as f:
         json.dump(output, f, indent=3)
