@@ -176,4 +176,3 @@ pyrightconfig.json
 resolvers
 output/output.json
 scripts/generate_pokemon_data.py
-scripts/generate_species_data.py
