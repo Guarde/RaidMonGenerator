@@ -1,0 +1,173 @@
+{
+    "pokemon_pool":{
+        "legendaries": true, //Whether or not legendaries should be included
+        "mythicals": true, //Whether or not mythicals should be included
+        "ultrabeasts": true, //Whether or not ultra beasts should be included
+        "regular": true, //Whether or not regular mons (includes legendaries) can be chosen
+        "unevolved": true,  //Whether or not unevolved pokemon can be chosen
+        "base_stat_min": 350, //Pokemon below this stat total will not be chosen
+        "base_stat_max": 1000, //Pokemon above this stat total will not be chosen
+        "pokemon_whitelist": ["kubfu"], //Only these pokemon can be chosen. Ignored if empty
+        "is_blacklist": false //If true, "pokmemon_whitelist" becomes a blacklist
+    },
+    "stats":{
+        "level": 100, //Raid Boss Level
+        "boss_scale": 2.5, //Raid Boss Scale
+        "nature": "optimal", //"optimal" - pick based on base stats, "random" - random
+        "iv_range": [31, 31], // [min, max]
+        "ev_mode": "optimal", //"optimal" - pick based on base stats, "random" - (not implemented)
+        "nature_random_choices": [ "Hardy", "Lonely", "Adamant", "Naughty", "Brave", "Defense", "Bold", "Docile", "Impish", "Lax", "Relaxed", "Modest", "Mild", "Bashful", "Rash", "Quiet", "Calm", "Gentle", "Careful", "Quirky", "Sassy", "Timid", "Hasty", "Jolly", "Naive", "Serious"]
+    },
+    "move_blacklist": ["focus-punch", "phantom-force", "draco-meteor", "overheat", "ally-switch", "mind-blown", "last-resort", "morning-sun", "moonlight", "mean-look", "block", "sand-attack", "minimize", "double-team", "helping-hand", "heal-pulse", "perish-song", "destiny-bond", "teleport", "sleep-talk", "tera-blast", "baton-pass", "substitute", "endure", "self-destruct", "explosion", "misty-explosion", "hyper-beam", "giga-impact", "future-sight", "dream-eater", "hypnosis", "rest", "recover", "wish", "synthesis", "protect", "detect", "kings-shield", "spiky-shield", "baneful-bunker", "obstruct", "silk-trap", "burning-bulwark", "healing-wish", "memento"],
+    "preferred_status_moves": ["swords-dance", "dragon-dance", "quiver-dance"],
+    "ability_blacklist": ["sturdy", "aftermath", "effect-spore", "cute-charm", "flame-body", "static", "iron-barbs", "mummy", "poison-point", "poison-touch", "rough-skin"],
+    "held_items": false, //not implemented
+    "arenas": ["castle"],
+    "item_overrides": { //not implemented
+        "giratina-origin": "criseous-core",
+        "dialga-origin": "adamant-core",
+        "palkia-origin": "lustrous-core",
+        "latias": "soul-dew",
+        "latios": "soul-dew"
+    },
+    "aspects":{
+        "aspects_whitelist": [""], //Only include aspects on the whitelist; Ignored if empty; Include "" to allow pokemon with no aspects
+        "is_blacklist": false, //If true, "aspects_whitelist" becomes a blacklist
+        "aspects_lookup": {"mega": "in-battle-mega", "mega-x": "in-battle-megax", "mega-y": "in-battle-megay"}, //Lookup table for discrepancies
+        "non_visual_aspects": ["in-battle-megax", "in-battle-megay", "in-battle-mega", "origin"] //Aspects that change more than just the look of the pokemon
+    },
+    "rewards":{
+        "base":[
+            { //Just the regular reward listing with a simplified distribution
+              "type": "pokeball",
+              "pokeballIndex": 0,
+              "message": "<gray>- <green>You received %amount% Pokeballs to catch the Raid Boss",
+              // Each "amount" and "chance" corresponds to the "place" value at the same index
+              "distribution":
+                {
+                    "place": ["1", "2-3-4", "10%", "participation"],
+                    "amount": [21, 14, 7, 8],
+                    "chance": [100, 100, 100, 100],
+                    "reward_scaling": true
+                }
+            },
+            {
+              "type": "command",
+              "command": "/pokebuilder give %player% %amount%",
+              "message": "<gray>- <green>You received %amount% Pokebuilder Tokens",
+              "distribution":
+                {
+                    "place": ["1", "2-3-4", "10%", "participation"],
+                    "amount": [100, 75, 50, 25],
+                    "chance": [100, 100, 100, 100],
+                    "reward_scaling": true
+                }
+            },
+            {
+              "type": "command",
+              "command": "/give %player% cobblemontransformations:scrollofwaters %amount%",
+              "message": "<gray>- <green>You received a Scroll of Waters",
+              "distribution":
+                {
+                    "place": ["1", "2-3-4", "10%", "participation"],
+                    "amount": [1, 1, 1, 1],
+                    "chance": [30, 20, 15, 10],
+                    "reward_scaling": false
+                }
+            },
+            {
+              "type": "command",
+              "command": "/give %player% cobblemontransformations:scrollofdarkness %amount%",
+              "message": "<gray>- <green>You received a Scroll of Darkness",
+              "distribution":
+                {
+                    "place": ["1", "2-3-4", "10%", "participation"],
+                    "amount": [1, 1, 1, 1],
+                    "chance": [30, 20, 15, 10],
+                    "reward_scaling": false
+                }
+            },
+            {
+              "type": "command",
+              "command": "/eco deposit %amount% dollars %player%",
+              "message": "<gray>- <green>You received $%amount%",
+              "distribution":
+                {
+                    "place": ["1", "2-3-4", "10%", "participation"],
+                    "amount": [5000, 3750, 2500, 2500],
+                    "chance": [100, 100, 100, 100],
+                    "reward_scaling": true
+                }
+            },
+            {
+              "type": "command",
+              "command": "/eco deposit %amount% raidpoints %player%",
+              "message": "<gray>- <green>You received %amount% Raid Points",
+              "distribution":
+                {
+                    "place": ["1", "2-3-4", "10%", "participation"],
+                    "amount": [15, 10, 5, 6],
+                    "chance": [10, 7, 5, 3],
+                    "reward_scaling": true
+                }
+            }
+        ],
+        "tiers": [
+            //Base reawards are increased by multiplier if the treshold is crossed
+            {
+                "treshold" : 750,
+                "multiplier": 2.5
+            },
+            {
+                "treshold" : 650,
+                "multiplier": 2
+            },
+            {
+                "treshold" : 550,
+                "multiplier": 1.5
+            },
+            {
+                "treshold" : 450,
+                "multiplier": 1.25
+            }
+        ]
+    },
+    "moves": [
+        {
+            //"primary" - Move with STAB on primary type, 
+            //"secondary" - Move with STAB on secondary type, 
+            //"coverage" - Select moves that cover the pokemon's weaknesses. Favoring moves that hit mutiple weaknesses effectively
+            //"non-stab" - Move with no STAB, 
+            //"status" - Any status move
+            //"random" - Any move from the movepool
+            //
+            // Moves will be chosen by category in order. 
+            //      Example: ["secondary", "non-stab"]:
+            //      Try to choose a move with STAB on the pokemon's secondary type
+            //      If the Pokemon does not have a secondary type or learns no moves  
+            //      of that type, a non-stab move will be chosen.
+            "category": ["primary"], 
+            "shuffle": false, //By default moves are preferrably chosen by base power; Randomized order if true
+            "power_min": 70, //Dont pick moves with a base power below this value, ignored for status moves
+            "acc_min": 90 //Dont pick moves with an accuracy below this value
+        },
+        {
+            "category": ["secondary", "primary", "coverage", "non-stab"], 
+            "shuffle": false,
+            "power_min": 70,
+            "acc_min": 90
+        },
+        {
+            "category": ["coverage", "non-stab"], 
+            "shuffle": false,
+            "power_min": 60,
+            "acc_min": 70
+        },
+        {
+            "category": ["status"], 
+            "shuffle": true,
+            "power_min": 70,
+            "acc_min": 70
+        }
+    ]
+}
