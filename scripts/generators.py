@@ -76,10 +76,12 @@ def get_moves(pokemon:dict, attack_type):
 
         type_match = True
         for key, values in file_man.settings["move_type_lock"].items():
-            if not move["name"] in values:                
+            if not move["name"] == key:    
                 continue
-            if key in pokemon["type"]:
+
+            if not [t for t in pokemon["type"] if t in values] == []:
                 continue
+
             type_match = False
             break
 
