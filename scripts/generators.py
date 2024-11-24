@@ -364,3 +364,4 @@ def run_process(pokemon_list, home):
             break
 
         file_man.do_dump(o, home, folder, n)
+    file_man.make_zip_file(home)

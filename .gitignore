@@ -176,3 +176,4 @@ pyrightconfig.json
 resolvers
 output
 scripts/generate_pokemon_data.py
+RaidMons_*.zip

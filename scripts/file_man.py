@@ -1,4 +1,5 @@
 import os, shutil
+from datetime import datetime
 import jstyleson as json
 
 pokemon_data = {}
@@ -35,15 +36,26 @@ def load_files(home):
 
 def cleanup_output_folder(home):
     output_path = os.path.join(home, "output")
-    shutil.rmtree(output_path)
-    os.mkdir(output_path)
+    temp_path = os.path.join(output_path, "_temp")
+    shutil.rmtree(temp_path, ignore_errors=True)
+    if not os.path.exists(output_path):
+        os.mkdir(output_path)
+    os.mkdir(temp_path)
+
+def make_zip_file(home):
+    output_path = os.path.join(home, "output")
+    temp_path = os.path.join(output_path, "_temp")
+    filename = datetime.now().strftime("RaidMons_%b-%d-%Y-%H-%M-%S")
+    shutil.make_archive(filename, "zip", root_dir=temp_path)
 
 
 def do_dump(output, home, folder, filename):
     filename = f"{filename}.json"
-    folder_path = os.path.join(home, "output", folder)
+    folder_path = os.path.join(home, "output", "_temp", folder)
     if not os.path.exists(os.path.join(home, "output")):
         os.mkdir(os.path.join(home, "output"))
+    if not os.path.exists(os.path.join(home, "output", "_temp")):
+        os.mkdir(os.path.join(home, "output", "_temp",))
     if not os.path.exists(folder_path):
         os.mkdir(folder_path)
     with open(os.path.join(folder_path, filename), mode="w+") as f:

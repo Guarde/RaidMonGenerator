@@ -111,7 +111,7 @@
                 {
                     "place": ["1", "2-3-4", "10%", "participation"],
                     "amount": [15, 10, 5, 6],
-                    "chance": [10, 7, 5, 3],
+                    "chance": [100, 100, 100, 100],
                     "reward_scaling": true
                 }
             }
@@ -120,11 +120,11 @@
             //Base reawards are increased by multiplier if the treshold is crossed
             {
                 "treshold" : 750,
-                "multiplier": 2.5
+                "multiplier": 2
             },
             {
                 "treshold" : 650,
-                "multiplier": 2
+                "multiplier": 1.75
             },
             {
                 "treshold" : 550,

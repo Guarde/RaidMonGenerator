@@ -22,7 +22,7 @@
     "bossEncounter_resetEVs": true,
     "bossEncounter_ability": "",
     "bossEncounter_randomNature": true,
-    "bossEncounter_level": 70,
+    "bossEncounter_level": 100,
     "bossEncounter_chanceOfShiny": true,
     "bossEncounter_chanceOfShinyInPercent": 0.5,
     "bossEncounter_minimumPerfectIVs": 1,
