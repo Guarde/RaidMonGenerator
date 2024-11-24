@@ -67,11 +67,34 @@ def get_pokemon():
             pokemon[key] = value
     return pokemon
 
-def get_moves(pokemon:dict):
+def get_moves(pokemon:dict, attack_type):
     moves = []
     for move in list(pokemon["moves"].values())[0]:
         move = file_man.move_list[move]
         if move["name"] in file_man.settings["move_blacklist"]:
+            continue
+
+        type_match = True
+        for key, values in file_man.settings["move_type_lock"].items():
+            if not move["name"] in values:                
+                continue
+            if key in pokemon["type"]:
+                continue
+            type_match = False
+            break
+
+        if not type_match:
+            continue
+
+        cat_match = True
+        for key, values in file_man.settings["move_category_lock"].items():
+            if not move["name"] in values:                
+                continue
+            if attack_type == key:
+                continue
+            cat_match = False
+            break
+        if not cat_match:
             continue
         if move["power"] == None:
             move["power"] = -1
@@ -253,7 +276,7 @@ def build_set(pokemon):
     build["nature"] = calc_nature(pokemon, attack_type)
     build["ivs"] = calc_ivs()
     build["evs"] = calc_evs(build["nature"])
-    build["moveSet"] = choose_moves(pokemon, get_moves(pokemon), attack_type, coverage(weak))
+    build["moveSet"] = choose_moves(pokemon, get_moves(pokemon, attack_type), attack_type, coverage(weak))
     build["scaleModifier"] = file_man.settings["stats"]["boss_scale"]
     build["arena"] = [random.choice(file_man.settings["arenas"])]
     build["encounterRewardForm"] = pokemon["form"]

@@ -16,10 +16,8 @@
         "nature": "optimal", //"optimal" - pick based on base stats, "random" - random
         "iv_range": [31, 31], // [min, max]
         "ev_mode": "optimal", //"optimal" - pick based on base stats, "random" - (not implemented)
-        "nature_random_choices": [ "Hardy", "Lonely", "Adamant", "Naughty", "Brave", "Defense", "Bold", "Docile", "Impish", "Lax", "Relaxed", "Modest", "Mild", "Bashful", "Rash", "Quiet", "Calm", "Gentle", "Careful", "Quirky", "Sassy", "Timid", "Hasty", "Jolly", "Naive", "Serious"]
+        "nature_random_choices": ["Hardy", "Lonely", "Adamant", "Naughty", "Brave", "Defense", "Bold", "Docile", "Impish", "Lax", "Relaxed", "Modest", "Mild", "Bashful", "Rash", "Quiet", "Calm", "Gentle", "Careful", "Quirky", "Sassy", "Timid", "Hasty", "Jolly", "Naive", "Serious"]
     },
-    "move_blacklist": ["focus-punch", "phantom-force", "draco-meteor", "overheat", "ally-switch", "mind-blown", "last-resort", "morning-sun", "moonlight", "mean-look", "block", "sand-attack", "minimize", "double-team", "helping-hand", "heal-pulse", "perish-song", "destiny-bond", "teleport", "sleep-talk", "tera-blast", "baton-pass", "substitute", "endure", "self-destruct", "explosion", "misty-explosion", "hyper-beam", "giga-impact", "future-sight", "dream-eater", "hypnosis", "rest", "recover", "wish", "synthesis", "protect", "detect", "kings-shield", "spiky-shield", "baneful-bunker", "obstruct", "silk-trap", "burning-bulwark", "healing-wish", "memento"],
-    "preferred_status_moves": ["swords-dance", "dragon-dance", "quiver-dance"],
     "ability_blacklist": ["sturdy", "aftermath", "effect-spore", "cute-charm", "flame-body", "static", "iron-barbs", "mummy", "poison-point", "poison-touch", "rough-skin"],
     "held_items": false, //not implemented
     "arenas": ["castle"],
@@ -136,6 +134,10 @@
             }
         ]
     },
+    "move_blacklist": ["focus-punch", "phantom-force", "draco-meteor", "overheat", "ally-switch", "mind-blown", "last-resort", "morning-sun", "moonlight", "mean-look", "block", "sand-attack", "minimize", "double-team", "helping-hand", "heal-pulse", "perish-song", "destiny-bond", "teleport", "sleep-talk", "tera-blast", "baton-pass", "substitute", "endure", "self-destruct", "explosion", "misty-explosion", "hyper-beam", "giga-impact", "future-sight", "dream-eater", "hypnosis", "rest", "recover", "wish", "synthesis", "protect", "detect", "kings-shield", "spiky-shield", "baneful-bunker", "obstruct", "silk-trap", "burning-bulwark", "healing-wish", "memento"],
+    "preferred_status_moves": ["swords-dance", "dragon-dance", "nasty-plot", "rain-dance", "quiver-dance", "calm-mind", "cosmic-power", "curse"], //These status moves will always be chosen if available and allowed by pokemon's type; priority left to right
+    "move_category_lock": {"physical": ["dragon-dance", "swords-dance"], "special": ["nasty-plot", "calm-mind"]}, //Moves are only available to pokemon in this attack category
+    "move_type_lock": {"ghost": ["curse"], "sunnyday": ["fire"], "raindance": ["water", "electric"], "sandstorm": ["ground", "rock", "steel"], "snowscape": ["ice"]}, //Moves are only available to pokemon with this type
     "moves": [
         {
             /*"primary" - Move with STAB on primary type, 
@@ -153,7 +155,7 @@
             "category": ["primary"], 
             "shuffle": false, //By default moves are preferrably chosen by base power; Randomized order if true
             "power_min": 70, //Dont pick moves with a base power below this value, ignored for status moves
-            "acc_min": 90 //Dont pick moves with an accuracy below this value
+            "acc_min": 90 //Dont pick moves with an accuracy below this value            
         },
         {
             "category": ["secondary", "primary", "coverage", "non-stab"], 
