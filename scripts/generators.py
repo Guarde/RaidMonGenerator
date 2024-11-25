@@ -50,8 +50,8 @@ def get_pokemon():
         if value["base_total"] > file_man.settings["pokemon_pool"]["base_stat_max"]:
             continue
         for aspect, replace in file_man.settings["aspects"]["aspects_lookup"].items():
-            if str.endswith(key, aspect):
-                key = key.replace(aspect, replace)            
+            if str.endswith(key, "-" + aspect):
+                key = key.replace("-" + aspect, "-" + replace)            
             if value["form"] == aspect:
                 value["form"] = replace
         if value["legendary"] and file_man.settings["pokemon_pool"]["legendaries"]:
@@ -71,7 +71,11 @@ def get_moves(pokemon:dict, attack_type):
     moves = []
     for move in list(pokemon["moves"].values())[0]:
         move = file_man.move_list[move]
+        
         if move["name"] in file_man.settings["move_blacklist"]:
+            continue
+
+        if not file_man.settings["allow_recoil_moves"] and move["name"] in file_man.settings["recoil_moves"]:
             continue
 
         type_match = True
@@ -96,6 +100,7 @@ def get_moves(pokemon:dict, attack_type):
                 continue
             cat_match = False
             break
+
         if not cat_match:
             continue
         if move["power"] == None:
@@ -266,6 +271,29 @@ def calc_multiplier(base_total:int):
         multiplier = v["multiplier"]
     return multiplier
 
+def find_folder(pokemon, build):
+    folder = "regular"
+    if pokemon["legendary"]:
+        folder = "legendary"
+    if pokemon["mythical"]:
+        folder = "mythical"
+    if pokemon["ultrabeast"]:
+        folder = "ultrabeast"
+
+    for a in file_man.settings["aspects"]["aspect_subfolders"]:
+        if not a in build["form"]:
+            continue
+        folder = a
+        break
+
+    for key, values in file_man.settings["aspects"]["aspect_groups"].items():
+        if not folder in values:
+            continue
+        folder = key
+        break
+    return folder
+
+
 def build_set(pokemon):
     attack_type = calc_attack_type(pokemon)
     weak = weaknesses(pokemon)
@@ -282,9 +310,20 @@ def build_set(pokemon):
     build["scaleModifier"] = file_man.settings["stats"]["boss_scale"]
     build["arena"] = [random.choice(file_man.settings["arenas"])]
     build["encounterRewardForm"] = pokemon["form"]
+    build["bossEncounter_randomMoveset"] = file_man.settings["randomize_encounter_moveset"]
+    build["folder"] = find_folder(pokemon, build)
     i = 0
     distribute = {}
-    for reward in file_man.settings["rewards"]["base"]:
+    
+    key_rewards = file_man.settings["rewards"]["key_rewards"]
+    bonus_rewards = []
+    if build["folder"] in key_rewards["keys"].keys():
+        key_name = key_rewards["keys"][build["folder"]]
+        command = key_rewards["command"].replace("%key%", key_name)
+        message = key_rewards["message"].replace("%key%", key_name)
+        bonus_rewards.append({"type": "command", "command": command, "message": message, "distribution": key_rewards["distribution"]})
+
+    for reward in file_man.settings["rewards"]["base"] + bonus_rewards:
         i += 1
         reward["id"] = i
         r = {}
@@ -363,30 +402,10 @@ def run_process(pokemon_list, home):
     file_man.cleanup_output_folder(home)
     for n, p in pokemon_list.items():
         o = build_set(p)
-
+        folder = o.pop("folder")
         if o["ability"] == "":
             print(n + " has no ability.")
             continue
-
-        folder = "regular"
-        if p["legendary"]:
-            folder = "legendary"
-        if p["mythical"]:
-            folder = "mythical"
-        if p["ultrabeast"]:
-            folder = "ultrabeast"
-
-        for a in file_man.settings["aspects"]["aspect_subfolders"]:
-            if not a in o["form"]:
-                continue
-            folder = a
-            break
-
-        for key, values in file_man.settings["aspects"]["subfolder_merger"].items():
-            if not folder in values:
-                continue
-            folder = key
-            break
 
         file_man.do_dump(o, home, folder, n)
     file_man.make_zip_file(home)
