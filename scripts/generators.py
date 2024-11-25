@@ -293,6 +293,10 @@ def find_folder(pokemon, build):
         break
     return folder
 
+def reward_form(form):
+    form = form.split(" ")
+    form = [f for f in form if not f in file_man.settings["aspects"]["reward_form_blacklist"]]
+    return " ".join(form)
 
 def build_set(pokemon):
     attack_type = calc_attack_type(pokemon)
@@ -309,7 +313,7 @@ def build_set(pokemon):
     build["moveSet"] = choose_moves(pokemon, get_moves(pokemon, attack_type), attack_type, coverage(weak))
     build["scaleModifier"] = file_man.settings["stats"]["boss_scale"]
     build["arena"] = [random.choice(file_man.settings["arenas"])]
-    build["encounterRewardForm"] = pokemon["form"]
+    build["encounterRewardForm"] = reward_form(pokemon["form"])
     build["bossEncounter_randomMoveset"] = file_man.settings["randomize_encounter_moveset"]
     build["folder"] = find_folder(pokemon, build)
     i = 0
