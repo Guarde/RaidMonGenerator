@@ -4,6 +4,7 @@ from scripts import file_man
 
 def import_files(home):
     file_man.load_files(home)
+    file_man.load_settings(home)
 
 def effectiveness(types):
     resist = {}
@@ -39,31 +40,31 @@ def coverage(weaknesses):
 def get_pokemon():
     pokemon = {}
     for key, value in file_man.pokemon_data.items():
-        if not file_man.settings["pokemon_pool"]["pokemon_whitelist"] == [] and not key in file_man.settings["pokemon_pool"]["pokemon_whitelist"] and not file_man.settings["pokemon_pool"]["is_blacklist"]:
+        if not file_man.s_pokemon["pokemon_whitelist"] == [] and not key in file_man.s_pokemon["pokemon_whitelist"] and not file_man.s_pokemon["is_blacklist"]:
             continue
-        if not file_man.settings["pokemon_pool"]["pokemon_whitelist"] == [] and key in file_man.settings["pokemon_pool"]["pokemon_whitelist"] and file_man.settings["pokemon_pool"]["is_blacklist"]:
+        if not file_man.s_pokemon["pokemon_whitelist"] == [] and key in file_man.s_pokemon["pokemon_whitelist"] and file_man.s_pokemon["is_blacklist"]:
             continue
-        if value["can_evolve"] and not file_man.settings["pokemon_pool"]["unevolved"]:
+        if value["can_evolve"] and not file_man.s_pokemon["unevolved"]:
             continue
-        if value["base_total"] < file_man.settings["pokemon_pool"]["base_stat_min"]:
+        if value["base_total"] < file_man.s_pokemon["base_stat_min"]:
             continue
-        if value["base_total"] > file_man.settings["pokemon_pool"]["base_stat_max"]:
+        if value["base_total"] > file_man.s_pokemon["base_stat_max"]:
             continue
-        for aspect, replace in file_man.settings["aspects"]["aspects_lookup"].items():
+        for aspect, replace in file_man.s_aspects["aspects_lookup"].items():
             if str.endswith(key, "-" + aspect):
                 key = key.replace("-" + aspect, "-" + replace)            
             if value["form"] == aspect:
                 value["form"] = replace
-        if value["legendary"] and file_man.settings["pokemon_pool"]["legendaries"]:
+        if value["legendary"] and file_man.s_pokemon["legendaries"]:
             pokemon[key] = value
             continue
-        if value["mythical"] and file_man.settings["pokemon_pool"]["mythicals"]:
+        if value["mythical"] and file_man.s_pokemon["mythicals"]:
             pokemon[key] = value
             continue
-        if value["ultrabeast"] and file_man.settings["pokemon_pool"]["ultrabeasts"]:
+        if value["ultrabeast"] and file_man.s_pokemon["ultrabeasts"]:
             pokemon[key] = value
             continue
-        if file_man.settings["pokemon_pool"]["regular"]:
+        if file_man.s_pokemon["regular"]:
             pokemon[key] = value
     return pokemon
 
@@ -72,14 +73,14 @@ def get_moves(pokemon:dict, attack_type):
     for move in list(pokemon["moves"].values())[0]:
         move = file_man.move_list[move]
         
-        if move["name"] in file_man.settings["move_blacklist"]:
+        if move["name"] in file_man.s_moves["move_blacklist"]:
             continue
 
-        if not file_man.settings["allow_recoil_moves"] and move["name"] in file_man.settings["recoil_moves"]:
+        if not file_man.s_moves["allow_recoil_moves"] and move["name"] in file_man.s_moves["recoil_moves"]:
             continue
 
         type_match = True
-        for key, values in file_man.settings["move_type_lock"].items():
+        for key, values in file_man.s_moves["move_type_lock"].items():
             if not move["name"] == key:    
                 continue
 
@@ -93,7 +94,7 @@ def get_moves(pokemon:dict, attack_type):
             continue
 
         cat_match = True
-        for key, values in file_man.settings["move_category_lock"].items():
+        for key, values in file_man.s_moves["move_category_lock"].items():
             if not move["name"] in values:                
                 continue
             if attack_type == key:
@@ -132,7 +133,7 @@ def move_filter_category(categories, moves, types, coverage_types):
                 new_moves = [m for m in moves if not m["type"] in types and not m["damage_class"] == "status"]
 
             case "status":
-                prefer = [m for m in moves if m["name"] in file_man.settings["preferred_status_moves"]]
+                prefer = [m for m in moves if m["name"] in file_man.s_moves["preferred_status_moves"]]
                 if not prefer == []:
                     new_moves = prefer
                 else:
@@ -160,7 +161,7 @@ def calc_attack_type(pokemon):
 def choose_moves(pokemon, moves, attack_type, coverage_types):
     choices = []
 
-    for slot in file_man.settings["moves"]:
+    for slot in file_man.s_moves["moveset"]:
         options = move_filter_category(slot["category"], moves, pokemon["type"], coverage_types)
         if slot["shuffle"]:
             random.shuffle(options)
@@ -176,16 +177,16 @@ def choose_moves(pokemon, moves, attack_type, coverage_types):
             choices.append(option["name"])
             break
 
-    if len(choices) < len(file_man.settings["moves"]):
+    if len(choices) < len(file_man.s_moves["moveset"]):
         for move in moves:
             if move["name"] in choices:
                 continue
             choices.append(move["name"])
-    if len(choices) < len(file_man.settings["moves"]):
+    if len(choices) < len(file_man.s_moves["moveset"]):
         choices += ["struggle", "struggle", "struggle"]
 
-    if len(choices) > len(file_man.settings["moves"]):
-        choices = choices[:len(file_man.settings["moves"])]
+    if len(choices) > len(file_man.s_moves["moveset"]):
+        choices = choices[:len(file_man.s_moves["moveset"])]
 
     final = {}
     i = 0
@@ -199,7 +200,7 @@ def calc_ivs():
     stats = ["hp", "attack", "defence", "special_attack", "special_defence", "speed"]
     result = {}
     for stat in stats:
-        result[stat] = min(random.randint(file_man.settings["stats"]["iv_range"][0], file_man.settings["stats"]["iv_range"][1]), 31)
+        result[stat] = min(random.randint(file_man.s_stats["iv_range"][0], file_man.s_stats["iv_range"][1]), 31)
     return result
 
 def calc_evs(nature):
@@ -222,8 +223,8 @@ def calc_evs(nature):
     return {"hp": result[0], "attack": result[1], "defence": result[2], "special_attack": result[3], "special_defence": result[4], "speed": result[5]}
 
 def calc_nature(pokemon, attack_type):
-    if not file_man.settings["stats"]["nature"] == "optimal":
-        return random.choice(file_man.settings["stats"]["nature_random_choices"])
+    if not file_man.s_stats["nature"] == "optimal":
+        return random.choice(file_man.s_stats["nature_random_choices"])
     
     if attack_type == "physical":
         if pokemon["base_att"]*1.5 <= pokemon["base_spd"]:
@@ -265,7 +266,7 @@ def calc_rewards(distribute:dict, rewards:dict, id:int, multiplier, enable_scali
 
 def calc_multiplier(base_total:int):
     multiplier = 1
-    for v in sorted(file_man.settings["rewards"]["tiers"], key=lambda d: d['treshold']):
+    for v in sorted(file_man.s_rewards["tiers"], key=lambda d: d['treshold']):
         if not base_total > v["treshold"]:
             break
         multiplier = v["multiplier"]
@@ -280,13 +281,13 @@ def find_folder(pokemon, build):
     if pokemon["ultrabeast"]:
         folder = "ultrabeast"
 
-    for a in file_man.settings["aspects"]["aspect_subfolders"]:
+    for a in file_man.s_aspects["aspect_subfolders"]:
         if not a in build["form"]:
             continue
         folder = a
         break
 
-    for key, values in file_man.settings["aspects"]["aspect_groups"].items():
+    for key, values in file_man.s_aspects["aspect_groups"].items():
         if not folder in values:
             continue
         folder = key
@@ -295,8 +296,51 @@ def find_folder(pokemon, build):
 
 def reward_form(form):
     form = form.split(" ")
-    form = [f for f in form if not f in file_man.settings["aspects"]["reward_form_blacklist"]]
+    form = [f for f in form if not f in file_man.s_aspects["reward_form_blacklist"]]
     return " ".join(form)
+
+def boss_form_prefix(form):
+    form = form.split(" ")
+    pre_prefix = "Boss"
+    prefix = []
+    for a, v in file_man.s_aspects["aspect_boss_names"].items():
+        for f in form:
+            if not f == a:
+                continue
+            if f in file_man.s_aspects["aspect_prefixes"].keys():
+                continue
+            prefix.append(v)
+            form.remove(f)
+            break
+    if not form == []:
+        for f in form:                
+            for key, values in file_man.s_aspects["aspect_groups"].items():
+                if key[0] == "_":
+                    continue
+                if [t for t in values if t in f] == []:
+                    continue
+                if f in file_man.s_aspects["aspect_prefixes"].keys():
+                    continue
+                form.remove(f)
+                prefix.append(key.title())
+                break
+    if not form == []:
+        for f in form:                
+            for v in file_man.s_aspects["aspect_subfolders"]:
+                if not v in f:
+                    continue
+                if f in file_man.s_aspects["aspect_prefixes"].keys():
+                    continue
+                form.remove(f)
+                p = f.replace(v, f" {v} ")
+                prefix.append(p.strip().title())
+                break
+    for f in form:
+        if not f in file_man.s_aspects["aspect_prefixes"].keys():
+            continue
+        pre_prefix = file_man.s_aspects["aspect_prefixes"][f]
+    return " ".join([pre_prefix] + prefix)
+
 
 def build_set(pokemon):
     attack_type = calc_attack_type(pokemon)
@@ -305,21 +349,22 @@ def build_set(pokemon):
     build["distributeRewards"] = []
     build["species"] = pokemon["name"]
     build["form"] = pokemon["form"]
-    build["level"] = file_man.settings["stats"]["level"]
+    build["level"] = file_man.s_stats["level"]
     build["gender"] = calc_gender(pokemon)
     build["nature"] = calc_nature(pokemon, attack_type)
     build["ivs"] = calc_ivs()
     build["evs"] = calc_evs(build["nature"])
     build["moveSet"] = choose_moves(pokemon, get_moves(pokemon, attack_type), attack_type, coverage(weak))
-    build["scaleModifier"] = file_man.settings["stats"]["boss_scale"]
-    build["arena"] = [random.choice(file_man.settings["arenas"])]
+    build["scaleModifier"] = file_man.s_stats["boss_scale"]
+    build["arena"] = [random.choice(file_man.s_generic["arenas"])]
     build["encounterRewardForm"] = reward_form(pokemon["form"])
-    build["bossEncounter_randomMoveset"] = file_man.settings["randomize_encounter_moveset"]
+    build["bossEncounter_randomMoveset"] = file_man.s_moves["randomize_encounter_moveset"]
+    build["formTextPlaceholder"] = boss_form_prefix(build["form"])
     build["folder"] = find_folder(pokemon, build)
     i = 0
     distribute = {}
     
-    key_rewards = file_man.settings["rewards"]["key_rewards"]
+    key_rewards = file_man.s_rewards["key_rewards"]
     bonus_rewards = []
     if build["folder"] in key_rewards["keys"].keys():
         key_name = key_rewards["keys"][build["folder"]]
@@ -327,7 +372,7 @@ def build_set(pokemon):
         message = key_rewards["message"].replace("%key%", key_name)
         bonus_rewards.append({"type": "command", "command": command, "message": message, "distribution": key_rewards["distribution"]})
 
-    for reward in file_man.settings["rewards"]["base"] + bonus_rewards:
+    for reward in file_man.s_rewards["base"] + bonus_rewards:
         i += 1
         reward["id"] = i
         r = {}
@@ -349,7 +394,7 @@ def build_set(pokemon):
         d = {"place": k, "rewards": d}
         build["distributeRewards"].append(d)
 
-    abilities = [a for a in pokemon["abilities"] if not a in file_man.settings["ability_blacklist"]]
+    abilities = [a for a in pokemon["abilities"] if not a in file_man.s_stats["ability_blacklist"]]
     if not abilities == []:
         build["ability"] = build["bossEncounter_ability"] = random.choice(abilities).replace("-", "")
     return build
@@ -363,20 +408,20 @@ def filter_aspects():
     for pokemon, aspects in file_man.cobbledata.items():
         for aspect in aspects:
             passed = True
-            for blacklist in file_man.settings["aspects"]["aspects_blacklist"]:
+            for blacklist in file_man.s_aspects["aspects_blacklist"]:
                 if [a for a in aspect if blacklist in a] == []:
                     continue
                 passed = False
                 break
             if not passed:
                 continue
-            if aspect == [] and "" in file_man.settings["aspects"]["aspects_whitelist"]:
+            if aspect == [] and "" in file_man.s_aspects["aspects_whitelist"]:
                 add_aspect(pokemon, aspect)
                 continue
-            if file_man.settings["aspects"]["aspects_whitelist"] == []:
+            if file_man.s_aspects["aspects_whitelist"] == []:
                 add_aspect(pokemon, aspect)
                 continue
-            if [a for a in aspect if a in file_man.settings["aspects"]["aspects_whitelist"]] == []:
+            if [a for a in aspect if a in file_man.s_aspects["aspects_whitelist"]] == []:
                 continue
             add_aspect(pokemon, aspect)
     return filtered_aspects
@@ -392,7 +437,7 @@ def filter_pokemon_with_aspects(aspect_list, pokemon):
             new_mon = copy.deepcopy(value)
             if not form == "" and not form in aspects:
                 continue
-            if form == "" and not [a for a in aspects if a in file_man.settings["aspects"]["non_visual_aspects"]] == []:
+            if form == "" and not [a for a in aspects if a in file_man.s_aspects["non_visual_aspects"]] == []:
                 continue
             if aspects == []:
                 new_pokemon_list[key] = new_mon
@@ -412,4 +457,7 @@ def run_process(pokemon_list, home):
             continue
 
         file_man.do_dump(o, home, folder, n)
-    file_man.make_zip_file(home)
+    if file_man.s_generic["create_zip"]:
+        file_man.make_zip_file(home)
+    if file_man.s_generic["cleanup_temp"]:
+        file_man.cleanup_output_folder(home)

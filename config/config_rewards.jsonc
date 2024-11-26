@@ -1,0 +1,138 @@
+{
+    "base":[
+        { //Just the regular reward listing with a simplified distribution
+          "type": "pokeball",
+          "pokeballIndex": 0,
+          "message": "<gray>- <green>You received %amount% Pokeballs to catch the Raid Boss",
+          // Each "amount" and "chance" corresponds to the "place" value at the same index
+          "distribution":
+            {
+                "place": ["1", "2-3-4", "10%", "participation"],
+                "amount": [21, 14, 7, 8],
+                "chance": [100, 100, 100, 100],
+                "reward_scaling": true
+            }
+        },
+        {
+          "type": "command",
+          "command": "/pokebuilder give %player% %amount%",
+          "message": "<gray>- <green>You received %amount% Pokebuilder Tokens",
+          "distribution":
+            {
+                "place": ["1", "2-3-4", "10%", "participation"],
+                "amount": [100, 75, 50, 25],
+                "chance": [100, 100, 100, 100],
+                "reward_scaling": true
+            }
+        },
+        /*
+        {
+          "type": "command",
+          "command": "/give %player% cobblemontransformations:scrollofwaters %amount%",
+          "message": "<gray>- <green>You received a Scroll of Waters",
+          "distribution":
+            {
+                "place": ["1", "2-3-4", "10%", "participation"],
+                "amount": [1, 1, 1, 1],
+                "chance": [30, 20, 15, 10],
+                "reward_scaling": false
+            }
+        },
+        {
+          "type": "command",
+          "command": "/give %player% cobblemontransformations:scrollofdarkness %amount%",
+          "message": "<gray>- <green>You received a Scroll of Darkness",
+          "distribution":
+            {
+                "place": ["1", "2-3-4", "10%", "participation"],
+                "amount": [1, 1, 1, 1],
+                "chance": [30, 20, 15, 10],
+                "reward_scaling": false
+            }
+        },
+        */
+        {
+          "type": "command",
+          "command": "/eco deposit %amount% dollars %player%",
+          "message": "<gray>- <green>You received $%amount%",
+          "distribution":
+            {
+                "place": ["1", "2-3-4", "10%", "participation"],
+                "amount": [5000, 3750, 2500, 2500],
+                "chance": [100, 100, 100, 100],
+                "reward_scaling": true
+            }
+        },
+        {
+          "type": "command",
+          "command": "/eco deposit %amount% raidpoints %player%",
+          "message": "<gray>- <green>You received %amount% Raid Points",
+          "distribution":
+            {
+                "place": ["1", "2-3-4", "10%", "participation"],
+                "amount": [15, 10, 5, 6],
+                "chance": [100, 100, 100, 100],
+                "reward_scaling": true
+            }
+        }
+    ],
+    "tiers": [
+        //Base reawards are increased by multiplier if the treshold is crossed
+        {
+            "treshold" : 750,
+            "multiplier": 2
+        },
+        {
+            "treshold" : 650,
+            "multiplier": 1.75
+        },
+        {
+            "treshold" : 550,
+            "multiplier": 1.5
+        },
+        {
+            "treshold" : 450,
+            "multiplier": 1.25
+        }
+    ],
+    "key_rewards": //Gives a bonus reward if a pokemon with a certain aspect is defeated
+    {   
+        "command": "/padmin givekey %player% %amount% %key% Crate", //The base command for all key rewards. %key% will be replace with the crate's name
+        "message": "<gray>- <green>You received %amount%x %key% Key", //The base message for all key rewards. %key% will be replace with the key's name
+        "distribution":{
+            "place": ["1", "2-3-4", "10%", "participation"],
+            "amount": [1, 1, 1, 1],
+            "chance": [100, 75, 50, 50],
+            "reward_scaling": false
+        },
+            "keys": { //A list of all the aspects to receive a key for. Aspects match aspect groups specified in the "aspect_groups" setting. Format: {"aspectname": "Crate Name"}
+            "abyss": "Abyss",
+            "aprilfools": "April Fools",
+            "arclight": "Arclight",
+            //"challenger": "Challenger",
+            "christmas": "Christmas",
+            "easter": "Easter",
+            "fourthofjuly": "Fourth of July",
+            "gilded": "Gilded",
+            //"gym": "Gym",
+            "halloween": "Halloween",
+            "kitsune": "Kitsune",
+            "mario": "Mario",
+            "newyears": "New Years",
+            "nimbus": "Nimbus",
+            "pinkan": "Pinkan",
+            //"pride": "Pride",
+            "sakura": "Sakura",
+            "shadow": "Shadow",
+            "slayer": "Slayer",
+            "sonic": "Sonic",
+            //"starwars": "Star Wars",
+            "stpatricks": "StPatricks",
+            "sunburst": "Sunburst",
+            "Undertale": "Undertale",
+            "unite": "Unite",
+            "valentine": "Valentine",
+            "zelda": "Zelda"                
+        }
+    }
+}

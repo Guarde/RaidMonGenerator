@@ -1,0 +1,19 @@
+{
+    "level": 100, //Raid Boss Level
+    "boss_scale": 2.5, //Raid Boss Scale
+    "nature": "optimal", //"optimal" - pick based on base stats, "random" - random
+    "iv_range": [31, 31], // [min, max]
+    "ev_mode": "optimal", //"optimal" - pick based on base stats, "random" - (not implemented)
+    "nature_random_choices": ["Hardy", "Lonely", "Adamant", "Naughty", "Brave", "Defense", "Bold", "Docile", "Impish", "Lax", "Relaxed", "Modest", "Mild", "Bashful", "Rash", "Quiet", "Calm", "Gentle", "Careful", "Quirky", "Sassy", "Timid", "Hasty", "Jolly", "Naive", "Serious"],
+    "ability_blacklist": ["sturdy", "aftermath", "effect-spore", "cute-charm", "flame-body", "static", "iron-barbs", "mummy", "poison-point", "poison-touch", "rough-skin"],
+    "preferred_abilities" : ["prankster"],
+    "held_items": false, //not implemented
+
+    "item_overrides": { //not implemented
+        "giratina-origin": "criseous-core",
+        "dialga-origin": "adamant-core",
+        "palkia-origin": "lustrous-core",
+        "latias": "soul-dew",
+        "latios": "soul-dew"
+    }
+}

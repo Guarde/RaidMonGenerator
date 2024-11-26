@@ -1,0 +1,11 @@
+{
+    "legendaries": true, //Whether or not legendaries should be included
+    "mythicals": true, //Whether or not mythicals should be included
+    "ultrabeasts": true, //Whether or not ultra beasts should be included
+    "regular": true, //Whether or not regular mons (includes legendaries) can be chosen
+    "unevolved": false,  //Whether or not unevolved pokemon can be chosen
+    "base_stat_min": 350, //Pokemon below this stat total will not be chosen
+    "base_stat_max": 1000, //Pokemon above this stat total will not be chosen
+    "pokemon_whitelist": ["arceus"], //Only these pokemon can be chosen. Ignored if empty
+    "is_blacklist": true //If true, "pokmemon_whitelist" becomes a blacklist
+}
