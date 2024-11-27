@@ -1,4 +1,4 @@
 {"arenas": ["castle"],
-"create_zip": false,
-"cleanup_temp": false
+"create_zip": true,
+"cleanup_temp": true
 }
