@@ -68,8 +68,15 @@ def make_zip_file(home):
 
 
 def do_dump(output, home, folder, filename):
+    for k, v in s_aspects["aspects_lookup"].items():
+        if not v in filename:
+            continue
+        filename = filename.replace(v, k)
     filename = f"{filename}.json"
-    folder_path = os.path.join(home, "output", "_temp", folder)
+    if s_generic["disable_subfolders"]:
+        folder_path = os.path.join(home, "output", "_temp")
+    else:
+        folder_path = os.path.join(home, "output", "_temp", folder)
     if not os.path.exists(os.path.join(home, "output")):
         os.mkdir(os.path.join(home, "output"))
     if not os.path.exists(os.path.join(home, "output", "_temp")):

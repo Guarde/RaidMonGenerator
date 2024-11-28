@@ -25,32 +25,6 @@
                 "reward_scaling": true
             }
         },
-        /*
-        {
-          "type": "command",
-          "command": "/give %player% cobblemontransformations:scrollofwaters %amount%",
-          "message": "<gray>- <green>You received a Scroll of Waters",
-          "distribution":
-            {
-                "place": ["1", "2-3-4", "10%", "participation"],
-                "amount": [1, 1, 1, 1],
-                "chance": [30, 20, 15, 10],
-                "reward_scaling": false
-            }
-        },
-        {
-          "type": "command",
-          "command": "/give %player% cobblemontransformations:scrollofdarkness %amount%",
-          "message": "<gray>- <green>You received a Scroll of Darkness",
-          "distribution":
-            {
-                "place": ["1", "2-3-4", "10%", "participation"],
-                "amount": [1, 1, 1, 1],
-                "chance": [30, 20, 15, 10],
-                "reward_scaling": false
-            }
-        },
-        */
         {
           "type": "command",
           "command": "/eco deposit %amount% dollars %player%",
@@ -95,10 +69,24 @@
             "multiplier": 1.25
         }
     ],
+    "megastone":{
+        "command": "/give %player% cobbletransformations:%item% %amount%", //The base command for all megastone rewards. %item% will be replace with the item"s name
+        "message": "<gray>- <green>You received %amount%x %item%", //The base message for all megastone rewards. %item% will be replace with the item"s name
+        "aspects": ["in_battle_cosmetic=mega", "in_battle_cosmetic=megax", "in_battle_cosmetic=megay"],
+        "aspectx": "in_battle_cosmetic=megax",
+        "aspecty": "in_battle_cosmetic=megay",
+        "items": {"abomasnow": "abomasite", "absol": "absolite", "aerodactyl": "aerodactylite", "aggron": "aggronite", "alakazam": "alakazite", "altaria": "altarianite", "ampharos": "ampharosite", "audino": "audinite", "banette": "banettite", "beedrill": "beedrillite", "blastoise": "blastoisinite", "blaziken": "blazikenite", "camerupt": "cameruptite", "charizard": "charizardite", "diancie": "diancite", "gallade": "galladite", "garchomp": "garchompite", "gardevoir": "gardevoirite", "gengar": "gengarite", "glalie": "glalitite", "gyarados": "gyaradosite", "heracross": "heracronite", "houndoom": "houndoominite", "kangaskhan": "kangaskhanite", "latias": "latiasite", "latios": "latiosite", "lopunny": "lopunnite", "lucario": "lucarionite", "manectric": "manectite", "mawile": "mawilite", "medicham": "medichamite", "metagross": "metagrossite", "mewtwo": "mewtwonite", "pidgeot": "pidgeotite", "pinsir": "pinsirite", "sableye": "sablenite", "salamence": "salamencite", "sceptile": "sceptilite", "scizor": "scizorite", "sharpedo": "sharpedonite", "slowbro": "slowbronite", "steelix": "steelixite", "swampert": "swampertite", "tyranitar": "tyranitarite", "venusaur": "venusaurite"},
+        "distribution":{
+                "place": ["1", "2-3-4", "10%", "participation"],
+                "amount": [1, 1, 1, 1],
+                "chance": [0, 0, 0, 10],
+                "reward_scaling": false
+            }
+    },
     "key_rewards": //Gives a bonus reward if a pokemon with a certain aspect is defeated
     {   
-        "command": "/padmin givekey %player% %amount% %key% Crate", //The base command for all key rewards. %key% will be replace with the crate's name
-        "message": "<gray>- <green>You received %amount%x %key% Key", //The base message for all key rewards. %key% will be replace with the key's name
+        "command": "/padmin givekey %player% %amount% %key% Crate", //The base command for all key rewards. %key% will be replace with the crate"s name
+        "message": "<gray>- <green>You received %amount%x %key% Key", //The base message for all key rewards. %key% will be replace with the key"s name
         "distribution":{
             "place": ["1", "2-3-4", "10%", "participation"],
             "amount": [1, 1, 1, 1],

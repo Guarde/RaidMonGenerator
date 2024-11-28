@@ -1,4 +1,5 @@
 {"arenas": ["castle"],
 "create_zip": true,
-"cleanup_temp": true
+"cleanup_temp": false,
+"disable_subfolders": true
 }

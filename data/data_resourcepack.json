@@ -138,10 +138,10 @@
          "valentine"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -281,25 +281,25 @@
          "shiny"
       ],
       [
-         "in-battle-megay"
+         "in_battle_cosmetic=megay"
       ],
       [
-         "in-battle-megay",
+         "in_battle_cosmetic=megay",
          "shiny"
       ],
       [
-         "in-battle-megax"
+         "in_battle_cosmetic=megax"
       ],
       [
-         "in-battle-megax",
+         "in_battle_cosmetic=megax",
          "shiny"
       ],
       [
-         "in-battle-megay",
+         "in_battle_cosmetic=megay",
          "gym"
       ],
       [
-         "in-battle-megax",
+         "in_battle_cosmetic=megax",
          "gym"
       ]
    ],
@@ -377,10 +377,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
@@ -507,10 +507,10 @@
          "champion"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -541,10 +541,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -1646,10 +1646,10 @@
          "crystal"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -1710,18 +1710,18 @@
          "unitebiker"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "gym"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "gym",
          "shiny"
       ]
@@ -1751,10 +1751,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -1911,10 +1911,10 @@
          "aprilfools"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
@@ -1922,7 +1922,7 @@
       ],
       [
          "ancientruins",
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
          "halloween2024"
@@ -2058,44 +2058,44 @@
          "shiny"
       ],
       [
-         "in-battle-megay"
+         "in_battle_cosmetic=megay"
       ],
       [
-         "in-battle-megay",
+         "in_battle_cosmetic=megay",
          "shiny"
       ],
       [
-         "in-battle-megay",
+         "in_battle_cosmetic=megay",
          "shadow"
       ],
       [
-         "in-battle-megay",
+         "in_battle_cosmetic=megay",
          "shiny",
          "shadow"
       ],
       [
-         "in-battle-megax"
+         "in_battle_cosmetic=megax"
       ],
       [
-         "in-battle-megax",
+         "in_battle_cosmetic=megax",
          "shiny"
       ],
       [
-         "in-battle-megax",
+         "in_battle_cosmetic=megax",
          "shadow"
       ],
       [
-         "in-battle-megax",
+         "in_battle_cosmetic=megax",
          "shiny",
          "shadow"
       ],
       [
          "nimbus",
-         "in-battle-megay"
+         "in_battle_cosmetic=megay"
       ],
       [
          "nimbus",
-         "in-battle-megax"
+         "in_battle_cosmetic=megax"
       ],
       [
          "armor"
@@ -2114,17 +2114,17 @@
          "shiny"
       ],
       [
-         "in-battle-megay"
+         "in_battle_cosmetic=megay"
       ],
       [
-         "in-battle-megay",
+         "in_battle_cosmetic=megay",
          "shiny"
       ],
       [
-         "in-battle-megax"
+         "in_battle_cosmetic=megax"
       ],
       [
-         "in-battle-megax",
+         "in_battle_cosmetic=megax",
          "shiny"
       ]
    ],
@@ -2567,16 +2567,16 @@
       ],
       [
          "stpatricks",
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
          "zelda"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -2586,10 +2586,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
@@ -2617,10 +2617,10 @@
          "halloween2024"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -2636,10 +2636,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -2655,10 +2655,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -2807,10 +2807,10 @@
          "zelda"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -2933,10 +2933,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -3181,18 +3181,18 @@
          "shadow"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "gym"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "gym",
          "shiny"
       ],
@@ -3495,10 +3495,10 @@
          "sakura"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -4253,10 +4253,10 @@
          "starwars"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -4439,10 +4439,10 @@
          "unite"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
@@ -5071,15 +5071,15 @@
          "nimbus"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
          "ancientruins",
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ]
    ],
    "lugia": [
@@ -5167,10 +5167,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -5245,10 +5245,10 @@
          "gilded"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -5315,10 +5315,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
@@ -5462,19 +5462,19 @@
          "zelda2"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
          "nimbus",
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
          "ancientruins",
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ]
    ],
    "kitsunelucario": [
@@ -6041,10 +6041,10 @@
          "halloween20242"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
@@ -6097,10 +6097,10 @@
          "unitesweet"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -6135,10 +6135,10 @@
          "zelda"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -7785,10 +7785,10 @@
          "unitespace"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
@@ -8205,18 +8205,18 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "gym"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "gym",
          "shiny"
       ],
@@ -8688,24 +8688,24 @@
       ],
       [
          "valentine",
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
          "zelda"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "gym"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "gym",
          "shiny"
       ]
@@ -9416,10 +9416,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [],
@@ -9451,15 +9451,15 @@
          "coldiron"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
          "coldiron",
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ]
    ],
    "regirock": [
@@ -9496,10 +9496,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -9515,15 +9515,15 @@
          "nimbus"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
          "nimbus",
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ]
    ],
    "kyogre": [
@@ -9572,10 +9572,10 @@
          "halloween"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
@@ -9586,7 +9586,7 @@
       ],
       [
          "nimbus",
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ]
    ],
    "jirachi": [
@@ -9901,10 +9901,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -10098,10 +10098,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -10147,10 +10147,10 @@
          "newyears"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -10566,15 +10566,15 @@
          "sakura"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
          "nimbus",
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ]
    ],
    "zangoose": [
@@ -11961,10 +11961,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -12714,10 +12714,10 @@
          "prismatic"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -13475,10 +13475,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ]
    ],
@@ -13674,10 +13674,10 @@
          "shiny"
       ],
       [
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "shiny"
       ],
       [
@@ -13698,17 +13698,17 @@
       ],
       [
          "valentine",
-         "in-battle-mega"
+         "in_battle_cosmetic=mega"
       ],
       [
          "zelda"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "gym"
       ],
       [
-         "in-battle-mega",
+         "in_battle_cosmetic=mega",
          "gym",
          "shiny"
       ]

@@ -341,6 +341,25 @@ def boss_form_prefix(form):
         pre_prefix = file_man.s_aspects["aspect_prefixes"][f]
     return " ".join([pre_prefix] + prefix)
 
+def get_reward_ability(build):
+    form = build["form"].split()
+    blacklisted = [f for f in form if f in file_man.s_aspects["reward_form_blacklist"]]
+    if blacklisted == []:
+        return build["ability"]
+    nonvis = [f for f in form if f in file_man.s_aspects["non_visual_aspects"]]
+    if nonvis == []:
+        return build["ability"]
+    if [f for f in blacklisted if f in nonvis] == []:
+        return build["ability"]
+    abilities = [a.replace("-", "") for a in file_man.pokemon_data[build["species"]]["abilities"]]
+    if build["ability"] in abilities:
+        return build["ability"]
+    return random.choice(abilities)
+
+def get_boss_scale(species):
+    if not species in file_man.s_stats["scale_override"].keys():
+        return file_man.s_stats["boss_scale"]
+    return file_man.s_stats["scale_override"][species]
 
 def build_set(pokemon):
     attack_type = calc_attack_type(pokemon)
@@ -355,7 +374,7 @@ def build_set(pokemon):
     build["ivs"] = calc_ivs()
     build["evs"] = calc_evs(build["nature"])
     build["moveSet"] = choose_moves(pokemon, get_moves(pokemon, attack_type), attack_type, coverage(weak))
-    build["scaleModifier"] = file_man.s_stats["boss_scale"]
+    build["scaleModifier"] = get_boss_scale(build["species"])
     build["arena"] = [random.choice(file_man.s_generic["arenas"])]
     build["encounterRewardForm"] = reward_form(pokemon["form"])
     build["bossEncounter_randomMoveset"] = file_man.s_moves["randomize_encounter_moveset"]
@@ -363,14 +382,29 @@ def build_set(pokemon):
     build["folder"] = find_folder(pokemon, build)
     i = 0
     distribute = {}
+    bonus_rewards = []
     
     key_rewards = file_man.s_rewards["key_rewards"]
-    bonus_rewards = []
     if build["folder"] in key_rewards["keys"].keys():
         key_name = key_rewards["keys"][build["folder"]]
         command = key_rewards["command"].replace("%key%", key_name)
         message = key_rewards["message"].replace("%key%", key_name)
         bonus_rewards.append({"type": "command", "command": command, "message": message, "distribution": key_rewards["distribution"]})
+
+    mega_rewards = file_man.s_rewards["megastone"]
+    mega_aspects = [a for a in build["form"].split(" ") if a in mega_rewards["aspects"]]
+    if not mega_aspects == []:
+        if build["species"] in mega_rewards["items"].keys():
+            item = mega_rewards["items"][build["species"]]
+            if mega_rewards["aspectx"] in mega_aspects:
+                item = item + "x"
+            elif mega_rewards["aspecty"] in mega_aspects:
+                item = item + "y"
+            command = mega_rewards["command"].replace("%item%", item)
+            message = mega_rewards["message"].replace("%item%", item.title())
+            bonus_rewards.append({"type": "command", "command": command, "message": message, "distribution": mega_rewards["distribution"]})
+
+
 
     for reward in file_man.s_rewards["base"] + bonus_rewards:
         i += 1
@@ -386,6 +420,8 @@ def build_set(pokemon):
             place = reward_dist["place"][c]
             amount = reward_dist["amount"][c]
             chance = reward_dist["chance"][c]
+            if chance == 0:
+                continue
             if not place in distribute.keys():
                 distribute[place] = []
             distribute[place].append({"id": i, "amount": ceil(amount * multiplier), "chance": chance})
@@ -396,7 +432,8 @@ def build_set(pokemon):
 
     abilities = [a for a in pokemon["abilities"] if not a in file_man.s_stats["ability_blacklist"]]
     if not abilities == []:
-        build["ability"] = build["bossEncounter_ability"] = random.choice(abilities).replace("-", "")
+        build["ability"] = random.choice(abilities).replace("-", "")
+        build["bossEncounter_ability"] = get_reward_ability(build)
     return build
 
 def filter_aspects():
@@ -451,6 +488,7 @@ def run_process(pokemon_list, home):
     file_man.cleanup_output_folder(home)
     for n, p in pokemon_list.items():
         o = build_set(p)
+        o["species"] = o["species"].replace("-", "") 
         folder = o.pop("folder")
         if o["ability"] == "":
             print(n + " has no ability.")
