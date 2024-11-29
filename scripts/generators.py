@@ -281,7 +281,7 @@ def find_folder(pokemon, build):
     if pokemon["ultrabeast"]:
         folder = "ultrabeast"
 
-    for a in file_man.s_aspects["aspect_subfolders"]:
+    for a in file_man.s_aspects["non_regular_aspects"]:
         if not a in build["form"]:
             continue
         folder = a
@@ -326,7 +326,7 @@ def boss_form_prefix(form):
                 break
     if not form == []:
         for f in form:                
-            for v in file_man.s_aspects["aspect_subfolders"]:
+            for v in file_man.s_aspects["non_regular_aspects"]:
                 if not v in f:
                     continue
                 if f in file_man.s_aspects["aspect_prefixes"].keys():
@@ -490,6 +490,9 @@ def run_process(pokemon_list, home):
         o = build_set(p)
         o["species"] = o["species"].replace("-", "") 
         folder = o.pop("folder")
+        if not folder in file_man.s_aspects["aspect_group_folders"]:
+            print(f"No subfolder for group {folder} enabled. Skipping {n}")
+            continue
         if o["ability"] == "":
             print(n + " has no ability.")
             continue
