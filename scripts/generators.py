@@ -497,5 +497,7 @@ def run_process(pokemon_list, home):
         file_man.do_dump(o, home, folder, n)
     if file_man.s_generic["create_zip"]:
         file_man.make_zip_file(home)
+    if file_man.s_generic["create_vouchers_config"]:
+        file_man.save_voucher_config(home)
     if file_man.s_generic["cleanup_temp"]:
         file_man.cleanup_output_folder(home)

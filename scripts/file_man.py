@@ -3,6 +3,7 @@ from datetime import datetime
 import jstyleson as json
 
 pokemon_data = {}
+pokemon_vouchers = {"customVouchers": {}, "customVouchersTextures": {}}
 pokemon_list = {}
 type_data = {}
 move_list = {}
@@ -64,14 +65,28 @@ def make_zip_file(home):
     output_path = os.path.join(home, "output")
     temp_path = os.path.join(output_path, "_temp")
     filename = datetime.now().strftime("RaidMons_%b-%d-%Y-%H-%M-%S")
+    os.chdir(output_path)
     shutil.make_archive(filename, "zip", root_dir=temp_path)
 
+def save_voucher_config(home):
+    output_path = os.path.join(home, "output")
+    filename = datetime.now().strftime("Raid_Vouchers_%b-%d-%Y-%H-%M-%S")
+    filename = f"{filename}.json"
+    os.chdir(output_path)
+    with open(os.path.join(output_path, filename), mode="w+") as f:
+        json.dump(pokemon_vouchers, f, indent=2)
 
 def do_dump(output, home, folder, filename):
     for k, v in s_aspects["aspects_lookup"].items():
         if not v in filename:
             continue
         filename = filename.replace(v, k)
+    if folder in s_generic["raid_vouchers"].keys():
+        voucher = s_generic["raid_vouchers"][folder]
+        if not voucher["name"] in pokemon_vouchers["customVouchers"].keys():
+            pokemon_vouchers["customVouchers"][voucher["name"]] = []
+            pokemon_vouchers["customVouchersTextures"][voucher["name"]] = voucher["id"]
+        pokemon_vouchers["customVouchers"][voucher["name"]].append(filename)
     filename = f"{filename}.json"
     if s_generic["disable_subfolders"]:
         folder_path = os.path.join(home, "output", "_temp")
