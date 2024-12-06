@@ -76,11 +76,15 @@ def save_voucher_config(home):
     with open(os.path.join(output_path, filename), mode="w+") as f:
         json.dump(pokemon_vouchers, f, indent=2)
 
-def do_dump(output, home, folder, filename):
+def do_dump(output:dict, home:str, folder:str, filename:str):
     for k, v in s_aspects["aspects_lookup"].items():
         if not v in filename:
             continue
         filename = filename.replace(v, k)
+    if s_generic["prefix_folder_to_filename"] and not folder[0] == "_":
+        filename = folder + "-" + filename.replace(f"-{folder}", "-")
+    filename = filename.replace(f"--", "-")
+    filename = filename.rstrip("-")
     if folder in s_generic["raid_vouchers"].keys():
         voucher = s_generic["raid_vouchers"][folder]
         if not voucher["name"] in pokemon_vouchers["customVouchers"].keys():

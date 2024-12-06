@@ -1,9 +1,10 @@
 {
     "arenas": ["castle"],
-    "create_zip": true, //Compress output into zip file
-    "cleanup_temp": true, //Delete everything in ./output/_temp after the process has finished
+    "create_zip": false, //Compress output into zip file
+    "cleanup_temp": false, //Delete everything in ./output/_temp after the process has finished
     "disable_subfolders": true, //Do not create subfolders; Dump all pokemon files in a single folder (does not affect vouchers)
-    "create_vouchers_config": true, //Create a config file for raid vouchers, sorted by output folder
+    "create_vouchers_config": false, //Create a config file for raid vouchers, sorted by output folder
+    "prefix_folder_to_filename": true, //Whether or not the filename is prefixed with the folder name (even if folders are not created) "mimikyu-costume-umbreon.json" becomes "halloween-mimikyu-costume-umbreon.json"
     "raid_vouchers": { //Create vouchers for pokemon in the following categories (folders)
         "abyss":  {"name": "Abyss", "id": 12},
         "ancientruins":  {"name": "Ancient Ruins", "id": 13},
@@ -23,16 +24,17 @@
         "prismatic":  {"name": "Prismatic", "id": 26},
         "shadow":  {"name": "Shadow", "id": 27},
         "sakura":  {"name": "Sakura", "id": 24},
+        "starwars":  {"name": "StarWars", "id": 27},
         "slayer":  {"name": "Slayer", "id": 28},
         "sonic":  {"name": "Sonic", "id": 29},
-        "stpatricks":  {"name": "St. Patricks", "id": 30},
+        "stpatricks":  {"name": "StPatrick", "id": 30},
         "sunburst":  {"name": "Sunburst", "id": 31},
-        "toxicchain":  {"name": "Toxic Chain", "id": 32},  
-        "undertale":  {"name": "Undertale", "id": 33},  
+        "toxicchain":  {"name": "ToxicChain", "id": 32},  
+        "undertale":  {"name": "Undertake", "id": 33},  
         "unite":  {"name": "Unite", "id": 34},  
         "valentine":  {"name": "Valentine", "id": 35},  
         "zelda":  {"name": "Zelda", "id": 36},  
-        "fourthofjuly":  {"name": "Fourth of July", "id": 37},  
+        "fourthofjuly":  {"name": "4thofJuly", "id": 37},
         "_legendary":  {"name": "Legendaries", "id": 16},  
         "_ultrabeast":  {"name": "Ultra Beasts", "id": 16},  
         "_mega":  {"name": "Mega", "id": 16}
