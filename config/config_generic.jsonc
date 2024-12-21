@@ -1,5 +1,6 @@
 {
-    "arenas": ["castle"],
+    "arenas":  {"castle": ["dark", "ghost", "dragon"], "fountain": ["fairy", "psychic", "water"], "glacier": ["ice", "rock", "water"], "factory": ["fighting", "steel", "rock", "electric", "fire"]}, //{"arena_name": ["type1", "type2", ...], "arena_name2": ...}
+    "arenas_default": "castle", //This arena is chosen if theres no matching arena for the pokemon's typing
     "create_zip": false, //Compress output into zip file
     "cleanup_temp": false, //Delete everything in ./output/_temp after the process has finished
     "disable_subfolders": true, //Do not create subfolders; Dump all pokemon files in a single folder (does not affect vouchers)
@@ -10,6 +11,7 @@
         "ancientruins":  {"name": "Ancient Ruins", "id": 13},
         "aprilfools":  {"name": "April Fools", "id": 14},
         "arclight":  {"name": "Arclight", "id": 15},
+        "christmas":  {"name": "Christmas", "id": 20},
         "dragonballz":  {"name": "Dragon Ball Z", "id": 16},
         "easter":  {"name": "Easter", "id": 17},
         "gilded":  {"name": "Gilded", "id": 18},
@@ -24,17 +26,17 @@
         "prismatic":  {"name": "Prismatic", "id": 26},
         "shadow":  {"name": "Shadow", "id": 27},
         "sakura":  {"name": "Sakura", "id": 24},
-        "starwars":  {"name": "StarWars", "id": 27},
+        "starwars":  {"name": "Star Wars", "id": 27},
         "slayer":  {"name": "Slayer", "id": 28},
         "sonic":  {"name": "Sonic", "id": 29},
-        "stpatricks":  {"name": "StPatrick", "id": 30},
+        "stpatricks":  {"name": "St. Patricks", "id": 30},
         "sunburst":  {"name": "Sunburst", "id": 31},
-        "toxicchain":  {"name": "ToxicChain", "id": 32},  
-        "undertale":  {"name": "Undertake", "id": 33},  
+        "toxicchain":  {"name": "Toxic Chain", "id": 32},  
+        "undertale":  {"name": "Undertale", "id": 33},  
         "unite":  {"name": "Unite", "id": 34},  
         "valentine":  {"name": "Valentine", "id": 35},  
         "zelda":  {"name": "Zelda", "id": 36},  
-        "fourthofjuly":  {"name": "4thofJuly", "id": 37},
+        "fourthofjuly":  {"name": "Fouth of July", "id": 37},
         "_legendary":  {"name": "Legendaries", "id": 16},  
         "_ultrabeast":  {"name": "Ultra Beasts", "id": 16},  
         "_mega":  {"name": "Mega", "id": 16}

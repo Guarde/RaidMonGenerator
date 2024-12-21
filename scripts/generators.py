@@ -361,6 +361,26 @@ def get_boss_scale(species):
         return file_man.s_stats["boss_scale"]
     return file_man.s_stats["scale_override"][species]
 
+def get_arena_for_mon(pokemon):
+    options = get_arena_for_type(pokemon["type"][0])
+    if options == [] and len(pokemon["type"]) > 1:
+        options = get_arena_for_type(pokemon["type"][1])
+    if options == []:
+        result = file_man.s_generic["arenas_default"]
+    else:
+        result = random.choice(options)
+    return result
+
+def get_arena_for_type(type:str):
+    options = []
+    for a, v in file_man.s_generic["arenas"].items():
+        if not type in v:
+            continue
+        options.append(a)
+    return options
+
+
+
 def build_set(pokemon):
     attack_type = calc_attack_type(pokemon)
     weak = weaknesses(pokemon)
@@ -375,7 +395,7 @@ def build_set(pokemon):
     build["evs"] = calc_evs(build["nature"])
     build["moveSet"] = choose_moves(pokemon, get_moves(pokemon, attack_type), attack_type, coverage(weak))
     build["scaleModifier"] = get_boss_scale(build["species"])
-    build["arena"] = [random.choice(file_man.s_generic["arenas"])]
+    build["arena"] = get_arena_for_mon(pokemon)
     build["encounterRewardForm"] = reward_form(pokemon["form"])
     build["bossEncounter_randomMoveset"] = file_man.s_moves["randomize_encounter_moveset"]
     build["formTextPlaceholder"] = boss_form_prefix(build["form"])
