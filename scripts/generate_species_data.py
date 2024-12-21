@@ -4,7 +4,7 @@ home = os.path.dirname(__file__)
 all_species = {}
 
 def load_files():
-    for root, folder, files in os.walk(os.path.join(home, "resolvers"), topdown=True):
+    for root, folder, files in os.walk(os.path.join(home, "..", "resolvers"), topdown=True):
         for file in files:
             if not ".json" in file:
                 continue

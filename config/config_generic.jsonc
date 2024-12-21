@@ -1,10 +1,11 @@
 {
-    "arenas":  {"castle": ["dark", "ghost", "dragon"], "fountain": ["fairy", "psychic", "water"], "glacier": ["ice", "rock", "water"], "factory": ["fighting", "steel", "rock", "electric", "fire"]}, //{"arena_name": ["type1", "type2", ...], "arena_name2": ...}
-    "arenas_default": "castle", //This arena is chosen if theres no matching arena for the pokemon's typing
-    "create_zip": false, //Compress output into zip file
+    "arenas_by_type":  {"arena1": ["ghost", "dark", "poison", "bug"], "arena2": ["fairy", "psychic", "grass"], "arena3": ["normal", "fighting", "steel", "flying"], "arena4": ["water", "ice", "dragon"], "arena5": ["fire", "ground", "rock", "electric"]}, //{"arena_name": ["type1", "type2", ...], "arena_name2": ...}
+    "arenas_by_aspect": {"castle": ["halloween"]}, //Takes priority over "arenas_by_type"
+    "arenas_default": "arena1", //This arena is chosen if theres no matching arena for the pokemon's typing
+    "create_zip": true, //Compress output into zip file
     "cleanup_temp": false, //Delete everything in ./output/_temp after the process has finished
     "disable_subfolders": true, //Do not create subfolders; Dump all pokemon files in a single folder (does not affect vouchers)
-    "create_vouchers_config": false, //Create a config file for raid vouchers, sorted by output folder
+    "create_vouchers_config": true, //Create a config file for raid vouchers, sorted by output folder
     "prefix_folder_to_filename": true, //Whether or not the filename is prefixed with the folder name (even if folders are not created) "mimikyu-costume-umbreon.json" becomes "halloween-mimikyu-costume-umbreon.json"
     "raid_vouchers": { //Create vouchers for pokemon in the following categories (folders)
         "abyss":  {"name": "Abyss", "id": 12},
